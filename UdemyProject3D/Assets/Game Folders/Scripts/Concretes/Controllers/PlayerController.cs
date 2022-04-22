@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UdemyProject3D.Movements;
 using UdemyProject3D.Inputs;
+using UdemyProject3D.Managers;
 using UnityEngine.InputSystem;
+using System;
 
 namespace UdemyProject3D.Controllers
 {
@@ -12,6 +14,8 @@ namespace UdemyProject3D.Controllers
         [SerializeField] float jumpForce;
 
         bool _isJump;
+        bool _isDead;
+
         float _moveSpeed = 10f;
         float _moveBoundary = 4.6f;
         float _horizontal;
@@ -30,6 +34,8 @@ namespace UdemyProject3D.Controllers
             _input = new InputReader(GetComponent<PlayerInput>());
         }
 
+
+
         private void FixedUpdate()
         {
             _horizontalMover.FixedTick(_horizontal);
@@ -43,11 +49,23 @@ namespace UdemyProject3D.Controllers
 
         private void Update()
         {
+            if (_isDead) return;
             _horizontal = _input.Horizontal;
             if (_input.IsJump)
             {
                 _isJump = true;
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            EnemyController _enemyController = other.GetComponent<EnemyController>();
+            if (_enemyController != null)
+            {
+                _isDead = true;
+                GameManager.Instance.StopGame();
+            }
+
         }
     }
 }

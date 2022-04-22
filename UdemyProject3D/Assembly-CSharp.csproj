@@ -56,13 +56,23 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game Folders\Scripts\Concretes\Controllers\PlayerController.cs" />
-    <Compile Include="Assets\Game Folders\Scripts\Concretes\Movements\HorizontalMover.cs" />
-    <Compile Include="Assets\Game Folders\Scripts\Concretes\Movements\JumpWithRigidbody.cs" />
-    <Compile Include="Assets\Game Folders\Scripts\Concretes\Inputs\GameInput.cs" />
-    <Compile Include="Assets\Game Folders\Scripts\Concretes\Inputs\InputReader.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Controllers\SpawnController.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Abstracts\Utilities\SingletonMonoBehaviorObject.cs" />
     <Compile Include="Assets\Game Folders\Scripts\Abstracts\Inputs\IInputReader.cs" />
-    <Compile Include="Assets\Game Folders\Scripts\Abstracts\IInputReader.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Managers\EnemyManager.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Movements\HorizontalMover.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\UIs\GameOverPanel.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Movements\JumpWithRigidbody.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Managers\GameManager.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\UIs\MenuPanel.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Movements\VerticalMover.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\UIs\GameCanvas.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\UIs\TimeCounter.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Controllers\PlayerController.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Inputs\GameInput.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Controllers\FloorController.cs" />
+    <Compile Include="Assets\Game Folders\Scripts\Concretes\Inputs\InputReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
