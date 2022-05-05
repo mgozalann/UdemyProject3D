@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UdemyProject3D.Controllers;
+using UdemyProject3D.Abstracts.Controllers;
+using UdemyProject3D.Abstracts.Movements;
+
 
 namespace UdemyProject3D.Movements
 {
-    public class VerticalMover : MonoBehaviour
+    public class VerticalMover : MonoBehaviour , IMover
     {
-        EnemyController _enemyController;
+        IEntityController _entityController;
         float _moveSpeed;
-        public VerticalMover(EnemyController enemyController)
+        public VerticalMover(IEntityController entityController)
         {
-            _enemyController = enemyController;
-            _moveSpeed = enemyController.MoveSpeed;
+            _entityController = entityController;
+            _moveSpeed = entityController.MoveSpeed;
         }
 
-        public void VerticalMove(float vertical = 1)
+        public void FixedTick(float vertical = 1)
         {
-            _enemyController.transform.Translate(Vector3.back * Time.deltaTime * _moveSpeed * vertical);
+            _entityController.transform.Translate(Vector3.back * Time.deltaTime * _moveSpeed * vertical);
         }
     }
 

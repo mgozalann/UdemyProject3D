@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UdemyProject3D.Controllers;
 using UnityEngine;
+using UdemyProject3D.Abstracts.Movements;
+
+
 
 namespace UdemyProject3D.Movements
 {
-    public class JumpWithRigidbody : MonoBehaviour
+    public class JumpWithRigidbody : MonoBehaviour , IJump
     {
         Rigidbody _rb;
         public bool CanJump => _rb.velocity.y != 0f;

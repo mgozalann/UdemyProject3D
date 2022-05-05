@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UdemyProject3D.Abstracts.Utilities;
+using UdemyProject3D.ScriptableObjects;
 
 namespace UdemyProject3D.Managers
 {
     public class GameManager : SingletonMonoBehaviorObject<GameManager>
     {
+        [SerializeField] LevelDifficultyData[] _levelDifficultyData;
 
         public event System.Action OnGameStop;
+
+        public LevelDifficultyData LevelDifficultyData => _levelDifficultyData[2];
+
         private void Awake()
         {
             SingletonThisObject(this);

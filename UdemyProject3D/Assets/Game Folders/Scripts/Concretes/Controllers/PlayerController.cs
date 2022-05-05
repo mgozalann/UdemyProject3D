@@ -6,31 +6,29 @@ using UdemyProject3D.Inputs;
 using UdemyProject3D.Managers;
 using UnityEngine.InputSystem;
 using System;
+using UdemyProject3D.Abstracts.Controllers;
+using UdemyProject3D.Abstracts.Movements;
 
 namespace UdemyProject3D.Controllers
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MyCharacterController, IEntityController
     {
         [SerializeField] float jumpForce;
 
         bool _isJump;
         bool _isDead;
-
-        float _moveSpeed = 10f;
-        float _moveBoundary = 4.6f;
+        
         float _horizontal;
 
-        public float MoveSpeed => _moveSpeed;
-        public float MoveBoundary => _moveBoundary;
+        IMover _mover;
+        IJump _jump;
 
-        HorizontalMover _horizontalMover;
-        JumpWithRigidbody _jumpWithRigidbody;
         InputReader _input; //interface almadýk
 
         private void Awake()
         {
-            _horizontalMover = new HorizontalMover(this);
-            _jumpWithRigidbody = new JumpWithRigidbody(this);
+            _mover = new HorizontalMover(this);
+            _jump = new JumpWithRigidbody(this);
             _input = new InputReader(GetComponent<PlayerInput>());
         }
 
@@ -38,11 +36,11 @@ namespace UdemyProject3D.Controllers
 
         private void FixedUpdate()
         {
-            _horizontalMover.FixedTick(_horizontal);
+            _mover.FixedTick(_horizontal);
 
             if (_isJump)
             {
-                _jumpWithRigidbody.FixedTick(jumpForce);
+                _jump.FixedTick(jumpForce);
             }
             _isJump = false;
         }
@@ -59,8 +57,8 @@ namespace UdemyProject3D.Controllers
 
         private void OnTriggerEnter(Collider other)
         {
-            EnemyController _enemyController = other.GetComponent<EnemyController>();
-            if (_enemyController != null)
+             IEntityController entityController= other.GetComponent<IEntityController>();
+            if (entityController != null)
             {
                 _isDead = true;
                 GameManager.Instance.StopGame();
